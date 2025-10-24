@@ -126,15 +126,12 @@
     vlc # Media player
     zathura # Pdf reader
     unzip # Extraction utility
-    (yazi.override {
-      # TUI file manager
-      _7zz = _7zz-rar; # Support for RAR extraction
-    })
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # Rose pine cursor theme
   ];
 
   environment.shellAliases = {
     cd = "z"; # Use zoxide instead of just cd
+    y = "yazi"; # Shortcut
   };
 
   programs.gamemode.enable = true;
@@ -142,16 +139,6 @@
 
   programs.bash = {
     enable = true;
-    shellInit = ''
-      # change the current working directory when exiting Yazi.
-      function y() {
-      	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-      	yazi "$@" --cwd-file="$tmp"
-      	IFS= read -r -d ''' cwd < "$tmp"
-      	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-      	rm -f -- "$tmp"
-      }
-    '';
   };
 
   programs.zoxide.enable = true;
@@ -266,6 +253,41 @@
         };
       }
     ];
+  };
+
+  programs.yazi = {
+    enable = true;
+    plugins = with pkgs.yaziPlugins; {
+      mount = mount;
+      chmod = chmod;
+      smart-paste = smart-paste;
+    };
+    settings = {
+      keymap = {
+        mgr = {
+          prepend_keymap = [
+            {
+              on = "M";
+              run = "plugin mount";
+              desc = "Open mount menu";
+            }
+            {
+              on = "p";
+              run = "plugin smart-paste";
+              desc = "Paste into the hovered directory or CWD";
+            }
+            {
+              on = [
+                "c"
+                "m"
+              ];
+              run = "plugin chmod";
+              desc = "Chmod on selected files";
+            }
+          ];
+        };
+      };
+    };
   };
 
   programs.hyprland = {
