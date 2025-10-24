@@ -48,6 +48,9 @@
   # Use zen kernel.
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
+  # DBus service that allows applications to query and manipulate storage devices.
+  services.udisks2.enable = true;
+
   networking.hostName = "pablo-nixos";
 
   # Configure network connections interactively with nmcli or nmtui.
