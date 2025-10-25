@@ -10,6 +10,7 @@
 {
   imports = [
     inputs.hyprland.nixosModules.default
+    inputs.home-manager.nixosModules.home-manager
 
     # Neovim, lsp, libs and settings for development
     ./dev-tools.nix
@@ -101,10 +102,13 @@
       "wheel" # Enable ‘sudo’ for the user.
       "docker" # Use docker without sudo
     ];
-    packages = with pkgs; [
-      yaak # API client
-      jujutsu # Git-compatible DVCS
-    ];
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
+    users.pablo = import ./home/pablo.nix;
   };
 
   # List packages installed in system profile.
