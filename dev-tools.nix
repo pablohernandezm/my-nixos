@@ -33,4 +33,16 @@
     rustfmt
     docker-language-server
   ];
+
+  # Takes care of both installation and setting up the sourcing of the shell
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    settings = {
+      global = {
+        hide_env_diff = true;
+      };
+    };
+  };
+
 }
