@@ -16,6 +16,7 @@
     bun
     cargo
     rustc
+    gcc
     viu
     chafa
     ueberzugpp
