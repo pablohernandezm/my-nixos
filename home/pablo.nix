@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     yaak # API client
     jujutsu # Git-compatible DVCS
+    tmux # Terminal multiplexer
   ];
 
   programs.home-manager.enable = true;
