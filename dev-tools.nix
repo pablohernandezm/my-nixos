@@ -37,6 +37,8 @@
     rust-analyzer
     rustfmt
     docker-language-server
+    postgres-language-server
+    pgformatter
   ];
 
   # Takes care of both installation and setting up the sourcing of the shell
