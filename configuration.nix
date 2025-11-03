@@ -159,6 +159,7 @@
       crimson-pro
       noto-fonts
       nerd-fonts.jetbrains-mono
+      corefonts
     ];
 
     fontconfig = {
