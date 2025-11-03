@@ -89,6 +89,9 @@
     pulse.enable = true;
   };
 
+  # mpris media player command-line controller
+  services.playerctld.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
