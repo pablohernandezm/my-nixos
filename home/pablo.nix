@@ -5,6 +5,7 @@
     tmux # Terminal multiplexer
     bacon # Background rust code checker
     sqlx-cli # Command-line utility for managing databases
+    youtube-music # Music player
   ];
 
   programs.home-manager.enable = true;
