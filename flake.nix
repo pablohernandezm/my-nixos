@@ -31,19 +31,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }:
-    {
-      nixosConfigurations.pablo-nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-        ];
-      };
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  }: {
+    nixosConfigurations.pablo-nixos = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./configuration.nix
+      ];
     };
+  };
 }

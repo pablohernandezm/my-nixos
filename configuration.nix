@@ -1,13 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 {
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.hyprland.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -20,7 +18,7 @@
   ];
 
   nix.settings = {
-    trusted-users = [ "@wheel" ];
+    trusted-users = ["@wheel"];
 
     experimental-features = [
       "nix-command"
@@ -40,7 +38,7 @@
 
     grub = {
       enable = true;
-      devices = [ "nodev" ];
+      devices = ["nodev"];
       efiSupport = true;
       useOSProber = true;
     };
@@ -107,7 +105,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     users.pablo = import ./home/pablo.nix;
   };
 
@@ -170,7 +168,7 @@
         sansSerif = [
           "Noto Sans"
         ];
-        monospace = [ "JetBrains Mono" ];
+        monospace = ["JetBrains Mono"];
       };
     };
   };
@@ -214,42 +212,39 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
-  xdg.mime =
-    let
-      value =
-        let
-          zen-browser = inputs.zen-browser.packages.${pkgs.system}.beta; # or twilight
-        in
-        zen-browser.meta.desktopFileName;
-
-      associations = builtins.listToAttrs (
-        map
-          (name: {
-            inherit name value;
-          })
-          [
-            "application/x-extension-shtml"
-            "application/x-extension-xhtml"
-            "application/x-extension-html"
-            "application/x-extension-xht"
-            "application/x-extension-htm"
-            "x-scheme-handler/unknown"
-            "x-scheme-handler/mailto"
-            "x-scheme-handler/chrome"
-            "x-scheme-handler/about"
-            "x-scheme-handler/https"
-            "x-scheme-handler/http"
-            "application/xhtml+xml"
-            "application/json"
-            "text/plain"
-            "text/html"
-          ]
-      );
+  xdg.mime = let
+    value = let
+      zen-browser = inputs.zen-browser.packages.${pkgs.system}.beta; # or twilight
     in
-    {
-      addedAssociations = associations;
-      defaultApplications = associations;
-    };
+      zen-browser.meta.desktopFileName;
+
+    associations = builtins.listToAttrs (
+      map
+      (name: {
+        inherit name value;
+      })
+      [
+        "application/x-extension-shtml"
+        "application/x-extension-xhtml"
+        "application/x-extension-html"
+        "application/x-extension-xht"
+        "application/x-extension-htm"
+        "x-scheme-handler/unknown"
+        "x-scheme-handler/mailto"
+        "x-scheme-handler/chrome"
+        "x-scheme-handler/about"
+        "x-scheme-handler/https"
+        "x-scheme-handler/http"
+        "application/xhtml+xml"
+        "application/json"
+        "text/plain"
+        "text/html"
+      ]
+    );
+  in {
+    addedAssociations = associations;
+    defaultApplications = associations;
+  };
 
   programs.dconf = {
     enable = true;
@@ -366,46 +361,46 @@
         ", XF86AudioPrev, exec, playerctl previous"
       ];
 
-      bind = [
-        "$mod, z, exec, $browser"
-        "$mod, m, exec, $menu"
-        "$mod, t, exec, $terminal"
-        "$mod, q, killactive,"
-        "$mod, V, exec, cliphist list | fuzzel --dmenu --with-nth 2 | cliphist decode | wl-copy"
+      bind =
+        [
+          "$mod, z, exec, $browser"
+          "$mod, m, exec, $menu"
+          "$mod, t, exec, $terminal"
+          "$mod, q, killactive,"
+          "$mod, V, exec, cliphist list | fuzzel --dmenu --with-nth 2 | cliphist decode | wl-copy"
 
-        "$mod, j, movefocus, d"
-        "$mod, k, movefocus, u"
-        "$mod, h, movefocus, l"
-        "$mod, l, movefocus, r"
+          "$mod, j, movefocus, d"
+          "$mod, k, movefocus, u"
+          "$mod, h, movefocus, l"
+          "$mod, l, movefocus, r"
 
-        "$mod Shift, h, movewindow, l"
-        "$mod Shift, j, movewindow, d"
-        "$mod Shift, k, movewindow, u"
-        "$mod Shift, l, movewindow, r"
+          "$mod Shift, h, movewindow, l"
+          "$mod Shift, j, movewindow, d"
+          "$mod Shift, k, movewindow, u"
+          "$mod Shift, l, movewindow, r"
 
-        "$mod Alt, h, resizeactive, -25 0"
-        "$mod Alt, j, resizeactive, 0 25"
-        "$mod Alt, k, resizeactive, 0 -25"
-        "$mod Alt, l, resizeactive, 25 0"
+          "$mod Alt, h, resizeactive, -25 0"
+          "$mod Alt, j, resizeactive, 0 25"
+          "$mod Alt, k, resizeactive, 0 -25"
+          "$mod Alt, l, resizeactive, 25 0"
 
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
+          "$mod, mouse_down, workspace, e+1"
+          "$mod, mouse_up, workspace, e-1"
 
-        "$mod, [, exec, hyprctl keyword general:layout 'dwindle'"
-        "$mod, ], exec, hyprctl keyword general:layout 'master'"
-      ]
-      ++ (builtins.concatLists (
-        builtins.genList (
-          i:
-          let
-            ws = i + 1;
-          in
-          [
-            "$mod, code:1${toString i}, workspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-          ]
-        ) 9
-      ));
+          "$mod, [, exec, hyprctl keyword general:layout 'dwindle'"
+          "$mod, ], exec, hyprctl keyword general:layout 'master'"
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            i: let
+              ws = i + 1;
+            in [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          )
+          9
+        ));
     };
   };
 
@@ -429,5 +424,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
