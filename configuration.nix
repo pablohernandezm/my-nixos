@@ -4,6 +4,7 @@
 {
   pkgs,
   inputs,
+  system,
   ...
 }: {
   imports = [
@@ -131,7 +132,7 @@
     vlc # Media player
     zathura # Pdf reader
     unzip # Extraction utility
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # Rose pine cursor theme
+    inputs.rose-pine-hyprcursor.packages.${system}.default # Rose pine cursor theme
   ];
 
   environment.shellAliases = {
@@ -214,7 +215,7 @@
 
   xdg.mime = let
     value = let
-      zen-browser = inputs.zen-browser.packages.${pkgs.system}.beta; # or twilight
+      zen-browser = inputs.zen-browser.packages.${system}.beta; # or twilight
     in
       zen-browser.meta.desktopFileName;
 
@@ -296,9 +297,9 @@
     enable = true;
     withUWSM = true;
 
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${system}.hyprland;
     portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
 
     settings = {
       "$mod" = "SUPER";
