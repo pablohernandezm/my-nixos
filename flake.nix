@@ -12,6 +12,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-25.url = "github:NixOS/nixpkgs/nixos-25.05-small";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
 
@@ -38,9 +39,10 @@
     ...
   }: {
     nixosConfigurations.pablo-nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {
+      specialArgs = rec {
         inherit inputs;
         system = "x86_64-linux";
+        pkgs-stable = inputs.nixpkgs-25.legacyPackages.${system};
       };
       modules = [
         ./configuration.nix
