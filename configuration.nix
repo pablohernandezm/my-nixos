@@ -136,6 +136,8 @@
     zathura # Pdf reader
     unzip # Extraction utility
     inputs.rose-pine-hyprcursor.packages.${system}.default # Rose pine cursor theme
+    grim # Grab images from a Wayland compositor
+    slurp # Select a region in a Wayland compositor
   ];
 
   environment.shellAliases = {
@@ -401,6 +403,10 @@
 
           "$mod, [, exec, hyprctl keyword general:layout 'dwindle'"
           "$mod, ], exec, hyprctl keyword general:layout 'master'"
+
+          # Screenshots
+          ", Print, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+          "Shift, Print, exec, grim -g \"$(slurp)\""
         ]
         ++ (builtins.concatLists (
           builtins.genList (
