@@ -26,6 +26,7 @@
     ueberzugpp
     typst
     vscode-extensions.vadimcn.vscode-lldb.adapter
+    gradle_9
 
     # Lsp and formatters
     lua-language-server
@@ -39,6 +40,10 @@
     docker-language-server
     postgres-language-server
     pgformatter
+    jdt-language-server
+    google-java-format
+    taplo
+    yamlfmt
   ];
 
   # Takes care of both installation and setting up the sourcing of the shell
@@ -50,5 +55,17 @@
         hide_env_diff = true;
       };
     };
+  };
+
+  programs.java = {
+    enable = true;
+    package = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
+  };
+
+  environment.variables = {
+    # Support for Neovim LSP Java configuration.
+    # These two extensions provide JDTLS with debugging and testing capabilities.
+    VSCODE_JAVA_DEBUG_PATH = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/";
+    VSCODE_JAVA_TEST_PATH = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/";
   };
 }
