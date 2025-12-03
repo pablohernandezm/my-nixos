@@ -308,7 +308,6 @@
 
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
 
     package = inputs.hyprland.packages.${system}.hyprland;
     portalPackage =

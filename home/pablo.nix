@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     bruno # API testing
     jujutsu # Git-compatible DVCS
@@ -6,6 +10,7 @@
     bacon # Background rust code checker
     sqlx-cli # Command-line utility for managing databases
     youtube-music # Music player
+    inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
   ];
 
   programs.home-manager.enable = true;
