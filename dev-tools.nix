@@ -40,7 +40,7 @@
     rustfmt
     docker-language-server
     postgres-language-server
-    pgformatter
+    sqruff
     jdt-language-server
     google-java-format
     taplo
