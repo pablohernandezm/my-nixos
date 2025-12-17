@@ -10,6 +10,7 @@
     bacon # Background rust code checker
     sqlx-cli # Command-line utility for managing databases
     youtube-music # Music player
+    ffmpeg # Record, convert and stream audio and video.
     inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
   ];
 

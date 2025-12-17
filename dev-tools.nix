@@ -28,6 +28,7 @@
     vscode-extensions.vadimcn.vscode-lldb.adapter
     gradle_9
     inotify-tools # better for neovim's file watching (lsp)
+    openssl # SSL and TLS protocols
 
     # Lsp and formatters
     lua-language-server

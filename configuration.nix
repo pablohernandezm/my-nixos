@@ -53,6 +53,11 @@
 
   networking.hostName = "pablo-nixos";
 
+  # Additional hosts entries.
+  networking.hosts = {
+    "127.0.0.1" = ["pablohez.dev"];
+  };
+
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
