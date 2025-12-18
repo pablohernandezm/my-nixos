@@ -15,7 +15,6 @@
     nixpkgs-25.url = "github:NixOS/nixpkgs/nixos-25.05-small";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
-    nixohess.url = "gitlab:fazzi/nixohess";
 
     home-manager = {
       url = "github:nix-community/home-manager";

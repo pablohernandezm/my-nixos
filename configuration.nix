@@ -128,7 +128,7 @@
     ashell # Status bar
     wl-clipboard # Copy/paste utility
     cliphist # Clipboard manager
-    fuzzel # App launcher
+    hyprlauncher # App launcher
     app2unit # Launches Desktop Entries as Systemd user units
     inputs.zen-browser.packages."${system}".beta # Zen-browser
     lutris # Game launcher
@@ -324,7 +324,7 @@
       "$mod" = "SUPER";
       "$terminal" = "app2unit kitty";
       "$browser" = "app2unit zen-beta";
-      "$menu" = "fuzzel --launch-prefix='app2unit --fuzzel-compat --'";
+      "$menu" = "hyprlauncher";
 
       env = [
         "TERMINAL=kitty"

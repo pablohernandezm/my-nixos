@@ -46,6 +46,11 @@
     google-java-format
     taplo
     yamlfmt
+    astro-language-server
+    marksman
+
+    # Runners
+    just
   ];
 
   # Takes care of both installation and setting up the sourcing of the shell
